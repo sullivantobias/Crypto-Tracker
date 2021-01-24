@@ -1,18 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { fetchMarkets, fetchCryptosList } from './api/api'
+import { fetchGlobalInfos } from './api/api'
 import Home from './pages/Home/home';
 import Details from './pages/Details/details';
 import News from './pages/News/news';
+import Header from './components/header/header';
+
+import './commons/styles/global.scss';
+import './commons/styles/app.scss';
 
 const App = () => {
+  const [headerInfos, setHeaderInfos] = useState({});
+
   useEffect(() => {
-    fetchMarkets()
-    fetchCryptosList();
-  })
-  
+    headerHandler();
+  }, [])
+
+  const headerHandler = async () => {
+    const globalInfos = await fetchGlobalInfos();
+    const { active_cryptocurrencies,
+      market_cap_percentage,
+      market_cap_change_percentage_24h_usd
+    } = globalInfos.data
+
+    setHeaderInfos(
+      {
+        ...headerInfos,
+        Coins: active_cryptocurrencies,
+        "24h Market Cap Change": `${market_cap_change_percentage_24h_usd.toFixed(1)}%`,
+        'BTC  Dominance': `${market_cap_percentage.btc.toFixed(2)}%`
+      }
+    );
+  }
+
   return (
     <div className="App">
+      <Header datas={headerInfos} />
       <Router>
         <div>
           <nav>

@@ -10,7 +10,7 @@ export const MARKETS = (currency = USD, order = 'market_cap_desc', perPage = '10
 
 // Simple
 export const CRYPTOSLIST = `${ENDPOINT}coins/list`
-
+export const GLOBAL = `${ENDPOINT}global`
 /**
  * @name Currencies
  */
