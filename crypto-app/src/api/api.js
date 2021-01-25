@@ -16,7 +16,7 @@ export const fetchCryptosList = async () => {
     const response = await fetch(CRYPTOSLIST);
     const cryptosList = await response.json();
 
-    return cryptosList.length;
+    return cryptosList;
 }
 
 export const fetchGlobalInfos = async () => {

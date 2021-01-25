@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { fetchGlobalInfos } from './api/api'
+import { fetchGlobalInfos, fetchMarkets } from './api/api'
 import Home from './pages/Home/home';
 import Details from './pages/Details/details';
 import News from './pages/News/news';
 import Header from './components/header/header';
+import Listing from './components/listing/listing';
 
 import './commons/styles/global.scss';
 import './commons/styles/app.scss';
 
 const App = () => {
   const [headerInfos, setHeaderInfos] = useState({});
+  const [listingInfos, setListingInfos] = useState([]);
 
   useEffect(() => {
     headerHandler();
+    listinghandler();
   }, [])
 
   const headerHandler = async () => {
@@ -33,9 +36,16 @@ const App = () => {
     );
   }
 
+  const listinghandler = async () => {
+    const listingMarkets = await fetchMarkets();
+
+    setListingInfos(listingMarkets);
+  }
+
   return (
     <div className="App">
       <Header datas={headerInfos} />
+      <Listing keys={['Name']} datas={listingInfos} />
       <Router>
         <div>
           <nav>
