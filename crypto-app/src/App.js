@@ -45,7 +45,7 @@ const App = () => {
   return (
     <div className="App">
       <Header datas={headerInfos} />
-      <Listing keys={['Name']} datas={listingInfos} />
+      <Listing keys={['Name', 'Price', '24h', 'Market Cap', 'Volume', 'Circulating Supply']} datas={listingInfos} />
       <Router>
         <div>
           <nav>
