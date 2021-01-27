@@ -1,0 +1,139 @@
+.cmp-listing {
+    overflow-x: scroll;
+
+    td {
+        width: 100%;
+        text-align: right;
+        font-size: 14px;
+        padding: 15px;
+        white-space: initial;
+        min-width: 130px;
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+
+    &__keys {
+        border-bottom: 1px solid #f0ecec;
+        margin: 0;
+        display: flex;
+        padding: 0 10px;
+
+        tr {
+            width: 100%;
+            display: flex;
+        }
+
+        th {
+            width: 100%;
+            text-align: right;
+            padding: 10px 20px;
+
+            &:last-child {
+                padding-right: 0;
+            }
+
+            &:first-child {
+                text-align: left;
+                padding-left: 25px;
+                position: sticky;
+                left: 0;
+                min-width: 130px;
+                background-color: white;
+            }
+        }
+
+        &--key {
+            color: rgb(34, 37, 49);
+            font-size: 12px;
+            font-weight: bold;
+        }
+    }
+
+    &__values {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 0;
+
+        &__item {
+            flex-basis: 100%;
+            display: flex;
+            border-bottom: 1px solid #f0ecec;
+            align-items: center;
+            padding: 0 10px;
+            transition: all 300ms;
+
+            &:hover {
+                background-color: #f5f2f2;
+                cursor: pointer;
+
+                .cmp-listing__values__item__marker {
+                    background-color: #f5f2f2;
+                }
+            }
+
+            &__marker {
+                display: flex;
+                align-items: center;
+                position: sticky;
+                left: 0;
+                z-index: 1;
+                background-color: white;
+                transition: all 300ms;
+
+                &--logo {
+                    height: 24px;
+                    width: 24px;
+                    border-radius: 12px;
+                    margin-right: 10px;
+
+                }
+
+                &__rightWrapper {
+                    flex-wrap: wrap;
+                    display: flex;
+                    font-size: 15px;
+
+                    &--name {
+                        flex-basis: 100%;
+                        margin-bottom: 5px;
+                        text-align: left;
+                        font-weight: bold;
+                    }
+
+                    &--index {
+                        border-radius: 50%;
+                        display: flex;
+                        font-size: 13px;
+                        background-color: black;
+                        color: white;
+                        justify-content: center;
+                        align-items: center;
+                        margin-right: 10px;
+                        border-radius: 4px;
+                        padding: 0px 6px;
+                    }
+
+                    &--symbol {
+                        text-transform: uppercase;
+                    }
+                }
+            }
+
+            &--price {
+                text-align: right;
+            }
+
+            &--24hchange {
+                &.isDown {
+                    color: red;
+                }
+
+                &.isUp {
+                    color: green;
+                }
+            }
+        }
+    }
+}
