@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { fetchGlobalInfos, fetchMarkets } from './api/api'
+import { fetchAvailableCurrencies, fetchGlobalInfos, fetchMarkets } from './api/api'
 import Home from './pages/Home/home';
 import Details from './pages/Details/details';
 import News from './pages/News/news';
@@ -13,10 +13,12 @@ import './commons/styles/app.scss';
 const App = () => {
   const [headerInfos, setHeaderInfos] = useState({});
   const [listingInfos, setListingInfos] = useState([]);
+  const [currencies, setCurrencies] = useState([]);
 
   useEffect(() => {
     headerHandler();
     listinghandler();
+    currenciesHandler();
   }, [])
 
   const headerHandler = async () => {
@@ -42,9 +44,15 @@ const App = () => {
     setListingInfos(listingMarkets);
   }
 
+  const currenciesHandler = async () => {
+    const currencies = await fetchAvailableCurrencies();
+
+    setCurrencies(currencies);
+  }
+
   return (
     <div className="App">
-      <Header datas={headerInfos} />
+      <Header datas={headerInfos} currencies={currencies} />
       <Listing keys={['Name', 'Price', '24h', 'Market Cap', 'Volume', 'Circulating Supply']} datas={listingInfos} />
       <Router>
         <div>

@@ -3,7 +3,7 @@
  * @description methods to retrieve datas
  */
 
-import { CRYPTOSLIST, GLOBAL, MARKETS } from "../constants/api";
+import { AVAILABLECURRENCIES, CRYPTOSLIST, GLOBAL, MARKETS } from "../constants/api";
 
 export const fetchMarkets = async () => {
     const response = await fetch(MARKETS());
@@ -24,4 +24,11 @@ export const fetchGlobalInfos = async () => {
     const globalInfos = await response.json();
 
     return globalInfos;
+}
+
+export const fetchAvailableCurrencies = async () => {
+    const response = await fetch(AVAILABLECURRENCIES);
+    const availableCurrencies = await response.json();
+
+    return availableCurrencies;
 }

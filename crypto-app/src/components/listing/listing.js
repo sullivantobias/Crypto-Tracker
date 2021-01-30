@@ -35,9 +35,9 @@ const Listing = ({ keys, datas }) => {
                             </td>
                             <td className='cmp-listing__values__item--price'>${formatNumbers(item.current_price)}</td>
                             <td className={`cmp-listing__values__item--24hchange ${isGoingDown(item.price_change_percentage_24h)}`}>{item.price_change_percentage_24h.toFixed(2)}%</td>
-                            <td className='cmp-listing__values__item--marketcap'>{item.market_cap}</td>
-                            <td className='cmp-listing__values__item--volume'>{item.total_volume}</td>
-                            <td className='cmp-listing__values__item--circulatingSupply'>{formatNumbers(item.circulating_supply, 0)}</td>
+                            <td className='cmp-listing__values__item--marketcap'>${formatNumbers(item.market_cap)}</td>
+                            <td className='cmp-listing__values__item--volume'>${formatNumbers(item.total_volume)}</td>
+                            <td className='cmp-listing__values__item--circulatingSupply'>{`${formatNumbers(item.circulating_supply, 0)}  ${item.symbol}`}</td>
                         </tr>
                     )}
                 </tbody>

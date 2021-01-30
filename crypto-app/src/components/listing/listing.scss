@@ -6,7 +6,7 @@
         text-align: right;
         font-size: 14px;
         padding: 15px;
-        white-space: initial;
+        white-space: nowrap;
         min-width: 130px;
 
         &:last-child {
@@ -133,6 +133,10 @@
                 &.isUp {
                     color: green;
                 }
+            }
+
+            &--circulatingSupply {
+                text-transform: uppercase;
             }
         }
     }
