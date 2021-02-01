@@ -2,16 +2,17 @@ import React from 'react';
 
 import './listing.scss';
 
-const Listing = ({ keys, datas }) => {
+const Listing = ({ keys, datas, currency }) => {
     const isGoingDown = price => {
         if (price === 0) return
         return price < 0 ? 'isDown' : 'isUp';
     }
 
-    const formatNumbers = (number, fixed = 2) => {
-        const formattedNumber = new Intl.NumberFormat({ style: 'currency', currency: 'usd' }).format(number.toFixed(fixed))
+    const formatNumbers = (number, fixed = 2, isSymbol = true) => {
+        const formattedNumber = new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(number.toFixed(fixed))
+        const formattedNumberNoSymbol = new Intl.NumberFormat({ style: 'currency', currency }).format(number.toFixed(fixed))
 
-        return formattedNumber;
+        return isSymbol ? formattedNumber : formattedNumberNoSymbol;
     }
 
     return (
@@ -33,11 +34,11 @@ const Listing = ({ keys, datas }) => {
                                     <span className='cmp-listing__values__item__marker__rightWrapper--symbol'>{item.symbol}</span>
                                 </div>
                             </td>
-                            <td className='cmp-listing__values__item--price'>${formatNumbers(item.current_price)}</td>
+                            <td className='cmp-listing__values__item--price'>{formatNumbers(item.current_price)}</td>
                             <td className={`cmp-listing__values__item--24hchange ${isGoingDown(item.price_change_percentage_24h)}`}>{item.price_change_percentage_24h.toFixed(2)}%</td>
-                            <td className='cmp-listing__values__item--marketcap'>${formatNumbers(item.market_cap)}</td>
-                            <td className='cmp-listing__values__item--volume'>${formatNumbers(item.total_volume)}</td>
-                            <td className='cmp-listing__values__item--circulatingSupply'>{`${formatNumbers(item.circulating_supply, 0)}  ${item.symbol}`}</td>
+                            <td className='cmp-listing__values__item--marketcap'>{formatNumbers(item.market_cap)}</td>
+                            <td className='cmp-listing__values__item--volume'>{formatNumbers(item.total_volume)}</td>
+                            <td className='cmp-listing__values__item--circulatingSupply'>{`${formatNumbers(item.circulating_supply, 0, false)}  ${item.symbol}`}</td>
                         </tr>
                     )}
                 </tbody>

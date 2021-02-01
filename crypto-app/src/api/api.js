@@ -5,8 +5,8 @@
 
 import { AVAILABLECURRENCIES, CRYPTOSLIST, GLOBAL, MARKETS } from "../constants/api";
 
-export const fetchMarkets = async () => {
-    const response = await fetch(MARKETS());
+export const fetchMarkets = async (currency) => {
+    const response = await fetch(MARKETS(currency));
     const markets = await response.json();
 
     return markets;

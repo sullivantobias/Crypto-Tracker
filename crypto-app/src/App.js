@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux'
+
 import { fetchAvailableCurrencies, fetchGlobalInfos, fetchMarkets } from './api/api'
 import Home from './pages/Home/home';
 import Details from './pages/Details/details';
@@ -15,11 +17,14 @@ const App = () => {
   const [listingInfos, setListingInfos] = useState([]);
   const [currencies, setCurrencies] = useState([]);
 
+  const currencyData = useSelector(state => state.currency)
+
   useEffect(() => {
     headerHandler();
     listinghandler();
     currenciesHandler();
-  }, [])
+
+  }, [currencyData])
 
   const headerHandler = async () => {
     const globalInfos = await fetchGlobalInfos();
@@ -39,7 +44,7 @@ const App = () => {
   }
 
   const listinghandler = async () => {
-    const listingMarkets = await fetchMarkets();
+    const listingMarkets = await fetchMarkets(currencyData.currency);
 
     setListingInfos(listingMarkets);
   }
@@ -53,7 +58,7 @@ const App = () => {
   return (
     <div className="App">
       <Header datas={headerInfos} currencies={currencies} />
-      <Listing keys={['Name', 'Price', '24h', 'Market Cap', 'Volume', 'Circulating Supply']} datas={listingInfos} />
+      <Listing keys={['Name', 'Price', '24h', 'Market Cap', 'Volume', 'Circulating Supply']} datas={listingInfos} currency={currencyData.currency} />
       <Router>
         <div>
           <nav>
@@ -75,4 +80,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default App
