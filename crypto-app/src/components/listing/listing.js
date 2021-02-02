@@ -1,4 +1,5 @@
 import React from 'react';
+import { propTypes } from './propTypes'
 
 import './listing.scss';
 
@@ -46,5 +47,7 @@ const Listing = ({ keys, datas, currency }) => {
         </div>
     );
 }
+
+Listing.propTypes = propTypes;
 
 export default Listing;

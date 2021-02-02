@@ -1,4 +1,5 @@
 import React from 'react';
+import { propTypes } from './propTypes'
 import CurrencySelector from '../currencySelector/currencySelector';
 
 import './header.scss';
@@ -13,5 +14,7 @@ const Header = ({ datas, currencies }) => {
         </header>
     );
 }
+
+Header.propTypes = propTypes;
 
 export default Header;

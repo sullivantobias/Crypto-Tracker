@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { propTypes } from './propTypes'
 import { useDispatch } from 'react-redux'
 import allActions from '../../store/actions'
 
@@ -23,5 +24,7 @@ const CurrencySelector = ({ currencies }) => {
         </div>
     );
 }
+
+CurrencySelector.propTypes = propTypes;
 
 export default CurrencySelector;
