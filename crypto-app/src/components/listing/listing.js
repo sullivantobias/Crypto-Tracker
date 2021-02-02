@@ -1,9 +1,10 @@
 import React from 'react';
 import { propTypes } from './propTypes'
+import { Loader } from '../commons/loader/loader'
 
 import './listing.scss';
 
-const Listing = ({ keys, datas, currency }) => {
+const Listing = ({ keys, datas, currency, loadingList }) => {
     const isGoingDown = price => {
         if (price === 0) return
         return price < 0 ? 'isDown' : 'isUp';
@@ -18,7 +19,7 @@ const Listing = ({ keys, datas, currency }) => {
 
     return (
         <div className='cmp-listing'>
-            <table className='cmp-listing__list'>
+            { loadingList ? <table className='cmp-listing__list'>
                 <thead className='cmp-listing__keys'>
                     <tr>
                         {keys.map(key => <th className='cmp-listing__keys--key' key={key}><div>{key}</div></th>)}
@@ -43,7 +44,9 @@ const Listing = ({ keys, datas, currency }) => {
                         </tr>
                     )}
                 </tbody>
-            </table>
+            </table> : <Loader />}
+
+
         </div>
     );
 }

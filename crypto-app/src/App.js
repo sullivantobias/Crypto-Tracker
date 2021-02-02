@@ -16,6 +16,7 @@ const App = () => {
   const [headerInfos, setHeaderInfos] = useState({});
   const [listingInfos, setListingInfos] = useState([]);
   const [currencies, setCurrencies] = useState([]);
+  const [loadingList, setLoadingList] = useState(false);
 
   const currencyData = useSelector(state => state.currency)
 
@@ -23,7 +24,6 @@ const App = () => {
     headerHandler();
     listinghandler();
     currenciesHandler();
-
   }, [currencyData])
 
   const headerHandler = async () => {
@@ -44,7 +44,9 @@ const App = () => {
   }
 
   const listinghandler = async () => {
+    setLoadingList(false)
     const listingMarkets = await fetchMarkets(currencyData.currency);
+    setLoadingList(true)
 
     setListingInfos(listingMarkets);
   }
@@ -58,7 +60,7 @@ const App = () => {
   return (
     <div className="App">
       <Header datas={headerInfos} currencies={currencies} />
-      <Listing keys={['Name', 'Price', '24h', 'Market Cap', 'Volume', 'Circulating Supply']} datas={listingInfos} currency={currencyData.currency} />
+      <Listing loadingList={loadingList} keys={['Name', 'Price', '24h', 'Market Cap', 'Volume', 'Circulating Supply']} datas={listingInfos} currency={currencyData.currency} />
       <Router>
         <div>
           <nav>
@@ -76,7 +78,7 @@ const App = () => {
           </Switch>
         </div>
       </Router>
-    </div>
+    </div >
   );
 }
 
