@@ -4,10 +4,9 @@ import { useSelector } from 'react-redux'
 
 import { fetchAvailableCurrencies, fetchGlobalInfos, fetchMarkets } from './api/api'
 import Home from './pages/Home/home';
-import Details from './pages/Details/details';
+import Currency from './pages/Currency/currency';
 import News from './pages/News/news';
 import Header from './components/header/header';
-import Listing from './components/listing/listing';
 
 import './commons/styles/global.scss';
 import './commons/styles/app.scss';
@@ -60,20 +59,18 @@ const App = () => {
   return (
     <div className="App">
       <Header datas={headerInfos} currencies={currencies} />
-      <Listing loadingList={loadingList} keys={['Name', 'Price', '24h', 'Market Cap', 'Volume', 'Circulating Supply']} datas={listingInfos} currency={currencyData.currency} />
       <Router>
         <div>
           <nav>
             <ul>
-              <li><Link to={'/'} className="nav-link">Home</Link></li>
-              <li><Link to={'/details'} className="nav-link">Details</Link></li>
-              <li><Link to={'/news'} className="nav-link">News</Link></li>
+              <li><Link to={'/'} >Home</Link></li>
+              <li><Link to={'/news'} >News</Link></li>
             </ul>
           </nav>
           <hr />
           <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/details' component={Details} />
+            <Route exact path='/' component={() => <Home loadingList={loadingList} keys={['Name', 'Price', '24h', 'Market Cap', 'Volume', 'Circulating Supply']} datas={listingInfos} currency={currencyData.currency} />} />
+            <Route path='/currencies' component={Currency} />
             <Route path='/news' component={News} />
           </Switch>
         </div>

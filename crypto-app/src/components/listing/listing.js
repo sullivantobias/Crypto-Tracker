@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import { propTypes } from './propTypes'
 import { Loader } from '../commons/loader/loader'
 
@@ -27,16 +28,18 @@ const Listing = ({ keys, datas, currency, loadingList }) => {
                 </thead>
                 <tbody className='cmp-listing__values'>
                     {datas.map(item => item &&
-                        <tr className='cmp-listing__values__item' key={item.id}>
+                        <tr key={item.id} className='cmp-listing__values__item' >
                             <td className='cmp-listing__values__item__marker'>
-                                <img alt={item.name} className='cmp-listing__values__item__marker--logo' src={item.image} />
-                                <div className='cmp-listing__values__item__marker__rightWrapper'>
-                                    <span className='cmp-listing__values__item__marker__rightWrapper--name'>{item.name}</span>
-                                    <span className='cmp-listing__values__item__marker__rightWrapper--index'>{item.market_cap_rank}</span>
-                                    <span className='cmp-listing__values__item__marker__rightWrapper--symbol'>{item.symbol}</span>
-                                </div>
+                                <Link to={`/currencies/${item.symbol}`} className='cmp-listing__values__link'>
+                                    <img alt={item.name} className='cmp-listing__values__item__marker--logo' src={item.image} />
+                                    <div className='cmp-listing__values__item__marker__rightWrapper'>
+                                        <span className='cmp-listing__values__item__marker__rightWrapper--name'>{item.name}</span>
+                                        <span className='cmp-listing__values__item__marker__rightWrapper--index'>{item.market_cap_rank}</span>
+                                        <span className='cmp-listing__values__item__marker__rightWrapper--symbol'>{item.symbol}</span>
+                                    </div>
+                                </Link>
                             </td>
-                            <td className='cmp-listing__values__item--price'>{formatNumbers(item.current_price)}</td>
+                            <td className='cmp-listing__values__item--price'> <Link to={`/currencies/${item.symbol}`} className='cmp-listing__values__link'>{formatNumbers(item.current_price)}</Link></td>
                             <td className={`cmp-listing__values__item--24hchange ${isGoingDown(item.price_change_percentage_24h)}`}>{item.price_change_percentage_24h.toFixed(2)}%</td>
                             <td className='cmp-listing__values__item--marketcap'>{formatNumbers(item.market_cap)}</td>
                             <td className='cmp-listing__values__item--volume'>{formatNumbers(item.total_volume)}</td>
@@ -44,10 +47,9 @@ const Listing = ({ keys, datas, currency, loadingList }) => {
                         </tr>
                     )}
                 </tbody>
-            </table> : <Loader />}
-
-
-        </div>
+            </table> : <Loader />
+            }
+        </div >
     );
 }
 

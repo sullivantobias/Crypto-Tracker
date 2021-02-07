@@ -1,9 +1,10 @@
 import React from 'react';
+import Listing from '../../components/listing/listing';
 
-const Home = () => {
+const Home = props => {
     return (
         <div>
-            <h2>Home Page</h2>
+            <Listing {...props} />
         </div>
     );
 }
