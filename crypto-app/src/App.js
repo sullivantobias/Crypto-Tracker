@@ -69,7 +69,7 @@ const App = () => {
           </nav>
           <hr />
           <Switch>
-            <Route exact path='/' component={() => <Home loadingList={loadingList} keys={['Name', 'Price', '24h', 'Market Cap', 'Volume', 'Circulating Supply']} datas={listingInfos} currency={currencyData.currency} />} />
+            <Route exact path='/' component={() => <Home loadingList={loadingList} keys={['Name', 'Price', '24h', 'Market Cap', 'Volume', 'Circulating Supply', 'Last 7 Days']} datas={listingInfos} currency={currencyData.currency} />} />
             <Route path='/currencies' component={Currency} />
             <Route path='/news' component={News} />
           </Switch>

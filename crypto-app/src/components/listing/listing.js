@@ -1,11 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import { propTypes } from './propTypes'
 import { Loader } from '../commons/loader/loader'
 
 import './listing.scss';
 
 const Listing = ({ keys, datas, currency, loadingList }) => {
+
+    const getImageUrl = url => `https://www.coingecko.com/coins/${url.match(/\d+/)}/sparkline`
+
     const isGoingDown = price => {
         if (price === 0) return
         return price < 0 ? 'isDown' : 'isUp';
@@ -44,6 +47,9 @@ const Listing = ({ keys, datas, currency, loadingList }) => {
                             <td className='cmp-listing__values__item--marketcap'>{formatNumbers(item.market_cap)}</td>
                             <td className='cmp-listing__values__item--volume'>{formatNumbers(item.total_volume)}</td>
                             <td className='cmp-listing__values__item--circulatingSupply'>{`${formatNumbers(item.circulating_supply, 0, false)}  ${item.symbol}`}</td>
+                            <td className='cmp-listing__values__item--last7days'>
+                                <img alt={item.name} src={getImageUrl(item.image)} />
+                            </td>
                         </tr>
                     )}
                 </tbody>
