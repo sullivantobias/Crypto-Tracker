@@ -33,7 +33,10 @@ const Listing = ({ keys, datas, currency, loadingList }) => {
                     {datas.map(item => item &&
                         <tr key={item.id} className='cmp-listing__values__item' >
                             <td className='cmp-listing__values__item__marker'>
-                                <Link to={`/currencies/${item.symbol}`} className='cmp-listing__values__link'>
+                                <Link to={{
+                                    pathname: `/currencies/${item.symbol}`,
+                                    state: { currency: item.id }
+                                }} className='cmp-listing__values__link'>
                                     <img alt={item.name} className='cmp-listing__values__item__marker--logo' src={item.image} />
                                     <div className='cmp-listing__values__item__marker__rightWrapper'>
                                         <span className='cmp-listing__values__item__marker__rightWrapper--name'>{item.name}</span>
@@ -42,7 +45,14 @@ const Listing = ({ keys, datas, currency, loadingList }) => {
                                     </div>
                                 </Link>
                             </td>
-                            <td className='cmp-listing__values__item--price'> <Link to={`/currencies/${item.symbol}`} className='cmp-listing__values__link'>{formatNumbers(item.current_price)}</Link></td>
+                            <td className='cmp-listing__values__item--price'>
+                                <Link to={{
+                                    pathname: `/currencies/${item.symbol}`,
+                                    state: { currency: item.id }
+                                }} className='cmp-listing__values__link'>
+                                    {formatNumbers(item.current_price)}
+                                </Link>
+                            </td>
                             <td className={`cmp-listing__values__item--24hchange ${isGoingDown(item.price_change_percentage_24h)}`}>{item.price_change_percentage_24h.toFixed(2)}%</td>
                             <td className='cmp-listing__values__item--marketcap'>{formatNumbers(item.market_cap)}</td>
                             <td className='cmp-listing__values__item--volume'>{formatNumbers(item.total_volume)}</td>
