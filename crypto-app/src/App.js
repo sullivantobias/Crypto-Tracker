@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 
 import { fetchAvailableCurrencies, fetchGlobalInfos, fetchMarkets } from './api/api'
@@ -7,6 +7,7 @@ import Home from './pages/Home/home';
 import Currency from './pages/Currency/currency';
 import News from './pages/News/news';
 import Header from './components/header/header';
+import Navigation from './components/navigation/navigation';
 
 import './commons/styles/global.scss';
 import './commons/styles/app.scss';
@@ -61,13 +62,7 @@ const App = () => {
       <Header datas={headerInfos} currencies={currencies} />
       <Router>
         <div>
-          <nav>
-            <ul>
-              <li><Link to={'/'} >Home</Link></li>
-              <li><Link to={'/news'} >News</Link></li>
-            </ul>
-          </nav>
-          <hr />
+          <Navigation links={[{ path: '/', title: 'Home' }, { path: '/news', title: 'News' }]} />
           <Switch>
             <Route exact path='/' component={() => <Home loadingList={loadingList} keys={['Name', 'Price', '24h', 'Market Cap', 'Volume', 'Circulating Supply', 'Last 7 Days']} datas={listingInfos} currency={currencyData.currency} />} />
             <Route path='/currencies' component={Currency} />

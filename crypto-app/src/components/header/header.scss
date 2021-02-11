@@ -1,6 +1,8 @@
+@import '../../commons/styles/colors.scss';
+
 .cmp-header {
     display: flex;
-    border-bottom: 1px solid #ded8d8;
+    border-bottom: 1px solid $color-grey;
     padding: 10px 0;
 
     &__list {
@@ -21,7 +23,7 @@
             font-weight: bold;
 
             &--value {
-                color: blue;
+                color: $color-pink;
                 font-weight: lighter;
             }
         }

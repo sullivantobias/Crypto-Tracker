@@ -1,3 +1,5 @@
+@import '../../commons/styles/colors.scss';
+
 .cmp-details-basic {
     &__marker {
         display: flex;
@@ -13,18 +15,19 @@
             margin: 10px 0;
 
             span {
-                background-color: rgb(73, 70, 70);
+                background-color: $color-white;
+                color: $color-black;
                 border-radius: 4px;
                 padding: 3px 6px;
                 font-size: 11px;
                 font-weight: 500;
                 line-height: 18px;
                 white-space: nowrap;
-                color: #fff;
                 margin-right: 10px;
 
                 &.cmp-details-basic__marker__badges--rank {
-                    background-color: #000;
+                    background-color: $color-grey;
+                    color: $color-white;
                 }
             }
         }

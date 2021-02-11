@@ -1,3 +1,5 @@
+@import '../../../commons/styles/colors.scss';
+
 .cmp-loader {
     display: flex;
     position: relative;
@@ -10,7 +12,7 @@
 
         &--item {
             position: absolute;
-            background: #000;
+            background: $color-pink;
             opacity: 1;
             border-radius: 50%;
             animation: loading 1.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;

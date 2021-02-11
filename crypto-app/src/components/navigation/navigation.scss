@@ -1,0 +1,13 @@
+@import '../../commons/styles/colors.scss';
+
+.cmp-navigation {
+    margin: 30px 0;
+
+    ul {
+        display: flex;
+
+        li {
+            margin-right: 20px;
+        }
+    }
+}
