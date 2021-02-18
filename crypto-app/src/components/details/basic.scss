@@ -1,13 +1,23 @@
 @import '../../commons/styles/colors.scss';
+@import '../../commons/styles/breakpoints.scss';
 
 .cmp-details-basic {
+    display: flex;
+    flex-wrap: wrap;
+
     &__marker {
         display: flex;
         flex-wrap: wrap;
+        flex-basis: 100%;
+
+        @include small {
+            flex-basis: 50%;
+        }
 
         &--logo {
             height: 32px;
             width: 32px;
+            border-radius: 50%;
         }
 
         &__badges {
@@ -40,6 +50,55 @@
                 span {
                     background-color: $color-pink;
                 }
+            }
+        }
+    }
+
+    &__prices {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        flex-basis: 100%;
+
+        @include small {
+            flex-basis: 50%;
+            justify-content: flex-end;
+        }
+
+        &--title {
+            flex-basis: 100%;
+
+            @include small {
+                text-align: right;
+            }
+
+            span {
+                text-transform: uppercase;
+            }
+        }
+
+        &--price {
+            font-size: 32px;
+            font-weight: bold;
+
+            @include small {
+                margin-right: 20px;
+            }
+        }
+
+        &--change {
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+
+            &.isDown {
+                background-color: $color-down;
+            }
+
+            &.isUp {
+                background-color: $color-up;
             }
         }
     }

@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Line } from 'react-chartjs-2';
 
+import './chart.scss';
+
 const Chart = ({ data }) => {
     const generateDataPoints = () => {
         let datas = { key: [], value: [] };
