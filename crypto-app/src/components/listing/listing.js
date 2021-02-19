@@ -8,7 +8,6 @@ import './listing.scss';
 const Listing = ({ keys, datas, currency, loadingList }) => {
 
     const getImageUrl = url => `https://www.coingecko.com/coins/${url.match(/\d+/)}/sparkline`
-
     const isGoingDown = price => {
         if (price === 0) return
         return price < 0 ? 'isDown' : 'isUp';

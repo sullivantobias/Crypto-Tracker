@@ -36,9 +36,7 @@ const Chart = ({ data }) => {
         labels: generateDataPoints().key,
         datasets: [
             {
-                borderColor: '#233DBD',
-                pointBorderColor: '#F4768B',
-                pointBackgroundColor: '#F4768B',
+                borderColor: '#8dc647',
                 pointBorderWidth: 1,
                 pointHoverRadius: 5,
                 pointHoverBackgroundColor: 'rgba(75,192,192,1)',

@@ -1,0 +1,27 @@
+@import '../../../commons/styles/colors.scss';
+
+.meter-wrapper {
+    width: 100%;
+    height: 5px;
+    border-radius: 25px;
+    margin: 20px 0;
+    position: relative;
+    background-color: $color-gauge1;
+
+    .bar {
+        position: absolute;
+        height: inherit;
+        border-radius: inherit;
+        background: $color-gauge2;
+
+        &:after {
+            content: "";
+            position: absolute;
+            border-top: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 7px solid $color-gauge2;
+            border-left: 7px solid transparent;
+            right: -5px;
+        }
+    }
+}

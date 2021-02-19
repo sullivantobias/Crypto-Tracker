@@ -30,11 +30,22 @@
                 flex-wrap: wrap;
                 margin: 10px 0;
                 max-width: 60%;
+
+                a,
+                &--tag {
+                    display: flex;
+                    align-items: center;
+                }
+
+                svg {
+                    font-size: 14px;
+                    margin-right: 5px;
+                }
             }
 
             span {
-                background-color: $color-white;
-                color: $color-black;
+                background-color: $color-gauge1;
+                color: $color-white;
                 border-radius: 4px;
                 padding: 3px 6px;
                 font-size: 11px;
@@ -99,6 +110,26 @@
 
             &.isUp {
                 background-color: $color-up;
+            }
+        }
+
+        &__low-high {
+            display: flex;
+            flex-basis: 100%;
+            justify-content: space-between;
+            margin: 15px 0;
+            flex-wrap: wrap;
+
+            span {
+                font-size: 14px;
+
+                &.value {
+                    font-weight: bold;
+                }
+            }
+
+            &__gauge {
+                flex-basis: 100%;
             }
         }
     }
