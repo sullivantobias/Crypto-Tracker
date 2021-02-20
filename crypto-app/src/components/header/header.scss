@@ -4,6 +4,7 @@
     display: flex;
     border-bottom: 1px solid $color-grey;
     padding: 10px 0;
+    justify-content: space-between;
 
     &__list {
         display: flex;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import { fetchCurrencyDetails, fetchCurrencyMarketChart } from '../../api/api';
+import { Loader } from '../../components/commons/loader/loader';
 import Basic from '../../components/details/basic';
 import Chart from '../../components/details/chart/chart';
 
@@ -26,10 +27,10 @@ const Details = () => {
     }
 
     return (
-        <div>
-            { Object.keys(currencyDetails).length && <Basic details={currencyDetails} />}
-            { Object.keys(currencyMarketChart).length && <Chart data={currencyMarketChart} />}
-        </div>
+        <>
+            { Object.keys(currencyDetails).length ? <Basic details={currencyDetails} /> : <Loader />}
+            { Object.keys(currencyMarketChart).length ? <Chart data={currencyMarketChart} /> : <Loader />}
+        </>
     );
 }
 
