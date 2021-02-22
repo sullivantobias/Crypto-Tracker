@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux'
 
 import { fetchAvailableCurrencies, fetchGlobalInfos, fetchMarkets } from './api/api'
 import Home from './pages/Home/home';
@@ -14,17 +13,18 @@ import './commons/styles/app.scss';
 
 const App = () => {
   const [headerInfos, setHeaderInfos] = useState({});
-  const [listingInfos, setListingInfos] = useState([]);
   const [currencies, setCurrencies] = useState([]);
-  const [loadingList, setLoadingList] = useState(false);
-
-  const currencyData = useSelector(state => state.currency)
 
   useEffect(() => {
     headerHandler();
-    listinghandler();
     currenciesHandler();
-  }, [currencyData])
+  }, []);
+
+  const currenciesHandler = async () => {
+    const currencies = await fetchAvailableCurrencies();
+
+    setCurrencies(currencies);
+  }
 
   const headerHandler = async () => {
     const globalInfos = await fetchGlobalInfos();
@@ -43,20 +43,6 @@ const App = () => {
     );
   }
 
-  const listinghandler = async () => {
-    setLoadingList(false)
-    const listingMarkets = await fetchMarkets(currencyData.currency);
-    setLoadingList(true)
-
-    setListingInfos(listingMarkets);
-  }
-
-  const currenciesHandler = async () => {
-    const currencies = await fetchAvailableCurrencies();
-
-    setCurrencies(currencies);
-  }
-
   return (
     <div className="App">
       <Header datas={headerInfos} currencies={currencies} />
@@ -64,7 +50,7 @@ const App = () => {
         <div>
           <Navigation links={[{ path: '/', title: 'Home' }, { path: '/news', title: 'News' }]} />
           <Switch>
-            <Route exact path='/' component={() => <Home loadingList={loadingList} keys={['Name', 'Price', '24h', 'Market Cap', 'Volume', 'Circulating Supply', 'Last 7 Days']} datas={listingInfos} currency={currencyData.currency} />} />
+            <Route exact path='/' component={Home} />
             <Route path='/currencies' component={Currency} />
             <Route path='/news' component={News} />
           </Switch>

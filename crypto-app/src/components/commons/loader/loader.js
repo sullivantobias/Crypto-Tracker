@@ -9,9 +9,9 @@ export const Loader = ({ isDots }) =>
             <div className="cmp-loader__wrapper--item"></div>
         </div>}
 
-        {isDots && <div class="loading-dots">
-            <div class="loading-dots--dot"></div>
-            <div class="loading-dots--dot"></div>
-            <div class="loading-dots--dot"></div>
+        {isDots && <div className="loading-dots">
+            <div className="loading-dots--dot"></div>
+            <div className="loading-dots--dot"></div>
+            <div className="loading-dots--dot"></div>
         </div>}
     </div>  

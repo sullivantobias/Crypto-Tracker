@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { propTypes } from './propTypes'
 import { Loader } from '../commons/loader/loader'
+import { formatNumbers } from '../utils';
 
 import './listing.scss';
 
@@ -11,13 +12,6 @@ const Listing = ({ keys, datas, currency, loadingList }) => {
     const isGoingDown = price => {
         if (price === 0) return
         return price < 0 ? 'isDown' : 'isUp';
-    }
-
-    const formatNumbers = (number, fixed = 2, isSymbol = true) => {
-        const formattedNumber = new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(number.toFixed(fixed))
-        const formattedNumberNoSymbol = new Intl.NumberFormat({ style: 'currency', currency }).format(number.toFixed(fixed))
-
-        return isSymbol ? formattedNumber : formattedNumberNoSymbol;
     }
 
     return (
@@ -34,7 +28,7 @@ const Listing = ({ keys, datas, currency, loadingList }) => {
                             <td className='cmp-listing__values__item__marker'>
                                 <Link to={{
                                     pathname: `/currencies/${item.symbol}`,
-                                    state: { currency: item.id }
+                                    state: { cryptoCurrency: item.id }
                                 }} className='cmp-listing__values__link'>
                                     <img alt={item.name} className='cmp-listing__values__item__marker--logo' src={item.image} />
                                     <div className='cmp-listing__values__item__marker__rightWrapper'>
@@ -49,13 +43,13 @@ const Listing = ({ keys, datas, currency, loadingList }) => {
                                     pathname: `/currencies/${item.symbol}`,
                                     state: { currency: item.id }
                                 }} className='cmp-listing__values__link'>
-                                    {formatNumbers(item.current_price)}
+                                    {formatNumbers(currency, item.current_price)}
                                 </Link>
                             </td>
                             <td className={`cmp-listing__values__item--24hchange ${isGoingDown(item.price_change_percentage_24h)}`}>{item.price_change_percentage_24h.toFixed(2)}%</td>
-                            <td className='cmp-listing__values__item--marketcap'>{formatNumbers(item.market_cap)}</td>
-                            <td className='cmp-listing__values__item--volume'>{formatNumbers(item.total_volume)}</td>
-                            <td className='cmp-listing__values__item--circulatingSupply'>{`${formatNumbers(item.circulating_supply, 0, false)}  ${item.symbol}`}</td>
+                            <td className='cmp-listing__values__item--marketcap'>{formatNumbers(currency, item.market_cap)}</td>
+                            <td className='cmp-listing__values__item--volume'>{formatNumbers(currency, item.total_volume)}</td>
+                            <td className='cmp-listing__values__item--circulatingSupply'>{`${formatNumbers(currency, item.circulating_supply, 0, false)}  ${item.symbol}`}</td>
                             <td className='cmp-listing__values__item--last7days'>
                                 <img alt={item.name} src={getImageUrl(item.image)} />
                             </td>
