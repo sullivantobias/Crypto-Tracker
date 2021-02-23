@@ -4,7 +4,7 @@ import { Line } from 'react-chartjs-2';
 
 import './chart.scss';
 
-const Chart = ({ data }) => {
+const Chart = ({ data, time }) => {
     const generateDataPoints = () => {
         let datas = { key: [], value: [] };
 
@@ -17,19 +17,73 @@ const Chart = ({ data }) => {
     }
 
     const formatDate = date => {
-        let hours = date.getHours();
-        let minutes = date.getMinutes();
+        let hours = undefined;
+        let minutes = undefined;
+        let res = ''
 
-        if (hours < 10) hours = "0" + hours;
-        if (minutes < 10) minutes = "0" + minutes;
+        switch (time) {
+            case '1':
+                hours = date.getHours();
+                minutes = date.getMinutes();
 
-        return "" + hours + ":" + minutes;
+                if (hours < 10) hours = "0" + hours;
+                if (minutes < 10) minutes = "0" + minutes;
+
+                res = "" + hours + ":" + minutes;
+                break;
+
+            case '7':
+            case '30':
+                const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+                res = `${date.getDate()}. ${days[date.getDay()]}`;
+                break;
+
+            case '365':
+                const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                res = months[date.getMonth()];
+                break;
+
+            case 'max':
+                res = date.getFullYear()
+                break;
+
+            default:
+                break;
+        }
+
+        return res;
     }
 
     const chartOptions = {
         legend: {
             display: false
-        }
+        },
+
+        scales: {
+            yAxes: [
+                {
+                    ticks: {
+                        fontColor: "white",
+                        fontStyle: "bold"
+                    }
+                }
+            ],
+            xAxes: [
+                {
+                    ticks: {
+                        maxTicksLimit: (() => {
+                            if (time === '1' || time === '7' || '365') return 7;
+                            else if (time === '30') return 16
+                        })(),
+                        fontColor: "white",
+                        fontStyle: "bold",
+                        maxRotation: 0,
+                        minRotation: 0
+                    }
+                }
+            ]
+        },
     }
 
     const chartData = {

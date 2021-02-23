@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import { fetchCurrencyDetails, fetchCurrencyMarketChart } from '../../api/api';
 import { Loader } from '../../components/commons/loader/loader';
 import Basic from '../../components/details/basic';
 import Chart from '../../components/details/chart/chart';
+import Filter from '../../components/filter/filter';
 
 const Details = () => {
     const { currency } = useSelector(state => state.currency)
@@ -14,11 +15,20 @@ const Details = () => {
     const [currencyDetails, setCurrencyDetails] = useState({})
     const [currencyMarketChart, setCurrencyMarketChart] = useState([])
     const [updating, setUpdating] = useState(true)
+    const [time, setTime] = useState('max')
+
+    const timesFilter = useMemo(() =>
+        <Filter onChangeValues={value => setTime(value)}
+            filters={[{ label: 'Day', value: 1 },
+            { label: 'Week', value: 7 },
+            { label: 'Month', value: 30 },
+            { label: 'Year', value: 365 },
+            { label: 'All', value: 'max' }]} />, []);
 
     useEffect(() => {
         if (!mounted) { detailsHandler(); setMounted(true) }
         marketChartHandler()
-    }, [currency]);
+    }, [currency, time]);
 
     const detailsHandler = async () => {
         const details = await fetchCurrencyDetails(data.state.cryptoCurrency);
@@ -27,7 +37,7 @@ const Details = () => {
 
     const marketChartHandler = async () => {
         setUpdating(true)
-        const mcData = await fetchCurrencyMarketChart(data.state.cryptoCurrency, currency);
+        const mcData = await fetchCurrencyMarketChart(data.state.cryptoCurrency, currency, time);
         setCurrencyMarketChart(mcData);
         setUpdating(false)
     }
@@ -35,7 +45,8 @@ const Details = () => {
     return (
         <>
             { Object.keys(currencyDetails).length ? <Basic currency={currency} details={currencyDetails} /> : <Loader />}
-            { !updating && Object.keys(currencyMarketChart).length ? <Chart data={currencyMarketChart} /> : <Loader />}
+            {timesFilter}
+            { !updating && Object.keys(currencyMarketChart).length ? <Chart time={time} data={currencyMarketChart} /> : <Loader />}
         </>
     );
 }

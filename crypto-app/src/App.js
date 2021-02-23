@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import { fetchAvailableCurrencies, fetchGlobalInfos, fetchMarkets } from './api/api'
+import { fetchAvailableCurrencies, fetchGlobalInfos } from './api/api'
 import Home from './pages/Home/home';
 import Currency from './pages/Currency/currency';
 import News from './pages/News/news';

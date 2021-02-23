@@ -40,8 +40,8 @@ export const fetchCurrencyDetails = async currency => {
     return details;
 }
 
-export const fetchCurrencyMarketChart = async (crypto, currency) => {
-    const response = await fetch(MARKET_CHART(crypto, currency));
+export const fetchCurrencyMarketChart = async (crypto, currency, time) => {
+    const response = await fetch(MARKET_CHART(crypto, currency, time));
     const data = await response.json();
 
     return data;
