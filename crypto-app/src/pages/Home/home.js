@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux'
 import { fetchMarkets } from '../../api/api'
 import Listing from '../../components/listing/listing';
 
+import './home.scss';
+
 const Home = () => {
     const [listingInfos, setListingInfos] = useState([]);
     const [loadingList, setLoadingList] = useState(false);
@@ -23,7 +25,7 @@ const Home = () => {
     }
 
     return (
-        <div>
+        <div className='cmp-page-home'>
             <Listing loadingList={loadingList} keys={['Name', 'Price', '24h', 'Market Cap', 'Volume', 'Circulating Supply', 'Last 7 Days']} datas={listingInfos} currency={currencyData.currency} />
         </div>
     );

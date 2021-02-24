@@ -1,6 +1,8 @@
 // Colors 
 
 $color-black: #0A0F18;
+$color-light-black: lighten($color-black, 5%);
+$color-lighter-black: lighten($color-black, 10%);
 $color-white: #F2F3F7;
 $color-grey: #1C2330;
 $color-blue: #060F8B;

@@ -19,7 +19,7 @@ const Filter = ({ filters, onChangeValues }) => {
     return (
         <div ref={element} className='cmp-filter'>
             <ul className='cmp-filter__choices'>
-                {filters.map((filter, index) => <li data-time={filter.value} className={index === Object.keys(filters).length - 1 ? 'selected' : ''} onClick={onClickHandler} key={index}>{filter.label}</li>)}
+                {filters.map((filter, index) => <li data-time={filter.value} className={index === 0 ? 'selected' : ''} onClick={onClickHandler} key={index}>{filter.label}</li>)}
             </ul>
         </div>
     );

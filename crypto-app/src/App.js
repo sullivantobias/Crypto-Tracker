@@ -45,16 +45,17 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header datas={headerInfos} currencies={currencies} />
       <Router>
-        <div>
-          <Navigation links={[{ path: '/', title: 'Home' }, { path: '/news', title: 'News' }]} />
+        <Navigation links={[{ path: '/', title: 'Cryptocurrencies' }, { path: '/news', title: 'News' }]} />
+        <Header datas={headerInfos} currencies={currencies} />
+        <>
+          <Navigation isBurger={false} links={[{ path: '/', title: 'Cryptocurrencies' }, { path: '/news', title: 'News' }]} />
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/currencies' component={Currency} />
             <Route path='/news' component={News} />
           </Switch>
-        </div>
+        </>
       </Router>
     </div >
   );

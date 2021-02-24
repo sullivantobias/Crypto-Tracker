@@ -2,6 +2,7 @@ import React from 'react';
 import { propTypes } from './propTypes'
 import { Loader } from '../commons/loader/loader'
 import CurrencySelector from '../currencySelector/currencySelector';
+import Navigation from '../navigation/navigation';
 
 import './header.scss';
 

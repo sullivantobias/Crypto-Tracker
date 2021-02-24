@@ -1,9 +1,15 @@
 @import '../../commons/styles/colors.scss';
+@import '../../commons/styles/breakpoints.scss';
 
 .cmp-currencySelector {
+    display: none;
     position: relative;
     background-color: $color-gauge2;
     border-radius: 4px;
+
+    @include medium {
+        display: flex;
+    }
 
     select {
         padding: 2px 20px 2px 7px;

@@ -7,6 +7,8 @@ import Basic from '../../components/details/basic';
 import Chart from '../../components/details/chart/chart';
 import Filter from '../../components/filter/filter';
 
+import './currency.scss';
+
 const Details = () => {
     const { currency } = useSelector(state => state.currency)
     let data = useLocation();
@@ -15,7 +17,7 @@ const Details = () => {
     const [currencyDetails, setCurrencyDetails] = useState({})
     const [currencyMarketChart, setCurrencyMarketChart] = useState([])
     const [updating, setUpdating] = useState(true)
-    const [time, setTime] = useState('max')
+    const [time, setTime] = useState('1')
 
     const timesFilter = useMemo(() =>
         <Filter onChangeValues={value => setTime(value)}
@@ -43,11 +45,11 @@ const Details = () => {
     }
 
     return (
-        <>
+        <div className='cmp-page-currency'>
             { Object.keys(currencyDetails).length ? <Basic currency={currency} details={currencyDetails} /> : <Loader />}
             {timesFilter}
             { !updating && Object.keys(currencyMarketChart).length ? <Chart time={time} data={currencyMarketChart} /> : <Loader />}
-        </>
+        </div>
     );
 }
 
