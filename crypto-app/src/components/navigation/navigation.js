@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoIosClose } from "react-icons/io";
 import { Link } from 'react-router-dom';
+import CurrencySelector from '../currencySelector/currencySelector';
 
 import './navigation.scss';
 
@@ -26,6 +27,7 @@ const Navigation = ({ isBurger = true, links }) => {
                             <div className='cmp-navigation__wrapper__content'>
                                 <div className='cmp-navigation__wrapper__content__header'>
                                     <span className='cmp-navigation__wrapper__content__header--logo'>Crypto Tracker</span>
+                                    <CurrencySelector />
                                     <span onClick={onClickHandler} className='cmp-navigation__wrapper__content__header--close'>
                                         <IoIosClose />
                                     </span>

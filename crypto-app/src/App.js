@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux'
+import allActions from './store/actions'
 import { fetchAvailableCurrencies, fetchGlobalInfos } from './api/api'
 import Home from './pages/Home/home';
 import Currency from './pages/Currency/currency';
@@ -13,7 +14,8 @@ import './commons/styles/app.scss';
 
 const App = () => {
   const [headerInfos, setHeaderInfos] = useState({});
-  const [currencies, setCurrencies] = useState([]);
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     headerHandler();
@@ -23,7 +25,7 @@ const App = () => {
   const currenciesHandler = async () => {
     const currencies = await fetchAvailableCurrencies();
 
-    setCurrencies(currencies);
+    dispatch(allActions.currencyActions.fetchCurrencies(currencies))
   }
 
   const headerHandler = async () => {
@@ -47,7 +49,7 @@ const App = () => {
     <div className="App">
       <Router>
         <Navigation links={[{ path: '/', title: 'Cryptocurrencies' }, { path: '/news', title: 'News' }]} />
-        <Header datas={headerInfos} currencies={currencies} />
+        <Header datas={headerInfos} />
         <>
           <Navigation isBurger={false} links={[{ path: '/', title: 'Cryptocurrencies' }, { path: '/news', title: 'News' }]} />
           <Switch>

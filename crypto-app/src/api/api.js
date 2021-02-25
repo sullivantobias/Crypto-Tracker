@@ -3,9 +3,16 @@
  * @description methods to retrieve datas
  */
 
-import { AVAILABLECURRENCIES, CRYPTOSLIST, DETAILS, GLOBAL, MARKETS, MARKET_CHART } from "../constants/api";
+import {
+    AVAILABLECURRENCIES,
+    CRYPTOSLIST,
+    DETAILS,
+    GLOBAL,
+    MARKETS,
+    MARKET_CHART
+} from "../constants/api";
 
-export const fetchMarkets = async (currency) => {
+export const fetchMarkets = async currency => {
     const response = await fetch(MARKETS(currency));
     const markets = await response.json();
 

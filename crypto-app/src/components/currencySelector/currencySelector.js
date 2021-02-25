@@ -1,26 +1,67 @@
-import React, { useRef, useState } from 'react';
-import { propTypes } from './propTypes'
-import { useDispatch } from 'react-redux'
+import React, { useState, useEffect } from 'react';
+import Select from 'react-select';
+import { propTypes } from './propTypes';
+import { useDispatch, useSelector } from 'react-redux';
 import allActions from '../../store/actions'
+import { Loader } from '../commons/loader/loader';
 
 import './currencySelector.scss';
 
-const CurrencySelector = ({ currencies }) => {
-    const [selectedCurrency, setSelectedCurrency] = useState('usd')
-    const select = useRef();
 
+const CurrencySelector = () => {
+    const [selectedCurrency, setSelectedCurrency] = useState('usd')
+
+    const { currencies, currency } = useSelector(state => state.currency)
     const dispatch = useDispatch()
 
-    const onChangeHandler = () => {
-        setSelectedCurrency(select.current.value)
-        dispatch(allActions.currencyActions.changeCurrency(select.current.value))
+    useEffect(() => {
+        setSelectedCurrency(currency)
+    }, [currency]);
+
+    const onChangeHandler = selectedValue => {
+        setSelectedCurrency(selectedValue.value)
+        dispatch(allActions.currencyActions.changeCurrency(selectedValue.value))
     }
+
+    const options = currencies && currencies.map(currency => ({ value: currency, label: currency }));
+
+    const customStyles = {
+        control: provided => ({
+            ...provided,
+            minHeight: 27,
+            height: 27,
+            width: 80,
+        }),
+
+        option: provided => ({
+            ...provided,
+            color: '#0A0F18'
+        }),
+
+        valueContainer: provided => ({
+            ...provided,
+            height: 27,
+            padding: '0 4px'
+        }),
+
+        indicatorsContainer: provided => ({
+            ...provided,
+            height: 27,
+        }),
+    };
 
     return (
         <div className='cmp-currencySelector'>
-            <select value={selectedCurrency} ref={select} onChange={onChangeHandler}>
-                {currencies.map((currency, index) => <option key={index} value={currency}>{currency}</option>)}
-            </select>
+            { currencies && currencies.length ?
+                <Select
+                    placeholder={selectedCurrency}
+                    styles={customStyles}
+                    options={options}
+                    value={selectedCurrency}
+                    onChange={onChangeHandler}
+                />
+                : <Loader isDots />
+            }
         </div>
     );
 }

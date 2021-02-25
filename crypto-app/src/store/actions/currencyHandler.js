@@ -5,6 +5,14 @@ const changeCurrency = currency => {
     }
 }
 
+const fetchCurrencies = currencies => {
+    return {
+        type: "FETCH_CURRENCIES",
+        payload: currencies
+    }
+}
+
 export default {
-    changeCurrency
+    changeCurrency,
+    fetchCurrencies
 }

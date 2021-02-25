@@ -2,6 +2,10 @@
 @import '../../commons/styles/breakpoints.scss';
 
 .cmp-navigation {
+    .cmp-currencySelector {
+        display: flex;
+    }
+
     &__list {
         display: none;
         background-color: $color-light-black;
