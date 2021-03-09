@@ -3,6 +3,10 @@
 .cmp-listing {
     overflow-x: scroll;
 
+    a {
+        color: $color-white;
+    }
+
     td {
         width: 100%;
         text-align: right;

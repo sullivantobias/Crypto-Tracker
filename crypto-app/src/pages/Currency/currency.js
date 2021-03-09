@@ -6,6 +6,7 @@ import { Loader } from '../../components/commons/loader/loader';
 import Basic from '../../components/details/basic';
 import Chart from '../../components/details/chart/chart';
 import Filter from '../../components/filter/filter';
+import Description from '../../components/details/description/description';
 
 import './currency.scss';
 
@@ -49,6 +50,7 @@ const Details = () => {
             { Object.keys(currencyDetails).length ? <Basic currency={currency} details={currencyDetails} /> : <Loader />}
             {timesFilter}
             { !updating && Object.keys(currencyMarketChart).length ? <Chart time={time} data={currencyMarketChart} /> : <Loader />}
+            { Object.keys(currencyDetails).length ? <Description crypto={currencyDetails.name} text={currencyDetails.description.en} /> : <Loader />}
         </div>
     );
 }

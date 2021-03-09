@@ -17,6 +17,10 @@
 
         &--link {
             margin-right: 20px;
+
+            a {
+                color: $color-white;
+            }
         }
     }
 
@@ -52,9 +56,9 @@
         width: 100%;
         top: 0;
         z-index: 10;
-        right: 100%;
+        left: 100%;
         background-color: $color-light-black;
-        transition: right 0.2s ease 0s;
+        transition: left 0.3s ease 0s;
 
         @include medium {
             display: none;
@@ -95,12 +99,16 @@
                     text-align: center;
                     font-size: 30px;
                     margin: 20px 0;
+
+                    a {
+                        color: $color-white;
+                    }
                 }
             }
         }
 
         &.open {
-            right: 0;
+            left: 0;
         }
     }
 }

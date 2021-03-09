@@ -1,7 +1,7 @@
 import React from 'react';
 import { IoIosLink, IoIosPricetag } from 'react-icons/io';
-import Gauge from './gauge/gauge';
 import { formatNumbers } from '../utils';
+import Gauge from './gauge/gauge';
 
 import './basic.scss';
 
