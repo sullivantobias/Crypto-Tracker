@@ -14,3 +14,12 @@ export const MARKET_CHART = (crypto, currency, time) => `${ENDPOINT}coins/${cryp
 export const CRYPTOSLIST = `${ENDPOINT}coins/list`
 export const GLOBAL = `${ENDPOINT}global`
 export const AVAILABLECURRENCIES = `${ENDPOINT}simple/supported_vs_currencies`
+
+
+/**
+ * @name News
+ */
+
+export const API_KEY = 'f6956d3cd1b040759e3bda7347ca1157'
+
+export const SPECIFIC_CRYPTO_NEWS = query => `http://newsapi.org/v2/everything?q=${query}&apiKey=${API_KEY}`
