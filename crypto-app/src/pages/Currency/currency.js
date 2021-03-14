@@ -8,6 +8,7 @@ import Chart from '../../components/details/chart/chart';
 import Filter from '../../components/filter/filter';
 import Description from '../../components/details/description/description';
 import News from '../../components/news/news';
+import Converter from '../../components/converter/converter';
 
 import './currency.scss';
 
@@ -36,6 +37,7 @@ const Details = () => {
 
     const detailsHandler = async () => {
         const details = await fetchCurrencyDetails(data.state.cryptoCurrency);
+
         setCurrencyDetails(details);
     }
 
@@ -49,11 +51,16 @@ const Details = () => {
     return (
         <div className='cmp-page-currency'>
             { Object.keys(currencyDetails).length ? <Basic currency={currency} details={currencyDetails} /> : <Loader />}
-            {timesFilter}
+            { timesFilter}
             { !updating && Object.keys(currencyMarketChart).length ? <Chart time={time} data={currencyMarketChart} /> : <Loader />}
-            { Object.keys(currencyDetails).length ? <Description crypto={currencyDetails.name} text={currencyDetails.description.en} /> : <Loader />}
-            { Object.keys(currencyDetails).length ? <News crypto={currencyDetails.name} /> : <Loader />}
-        </div>
+            { Object.keys(currencyDetails).length ? <Converter
+                crypto={{ name: currencyDetails.name, symbol: currencyDetails.symbol }}
+                lastValue={currencyDetails.market_data.current_price[currency]}
+                currency={currency}
+            /> : <Loader />}
+            { Object.keys(currencyDetails).length ? <Description crypto={currencyDetails.name} text={currencyDetails.description && currencyDetails.description.en} /> : <Loader />}
+            { Object.keys(currencyDetails).length ? <News query={currencyDetails.name} numberItemsDisplayed={3} /> : <Loader />}
+        </div >
     );
 }
 

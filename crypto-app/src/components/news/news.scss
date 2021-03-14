@@ -76,4 +76,21 @@
             }
         }
     }
+
+    &--loadmore {
+        color: $color-white;
+        align-items: center;
+        background: $color-gauge1;
+        border: 0px;
+        border-radius: 8px;
+        display: flex;
+        cursor: pointer;
+        justify-content: center;
+        outline: 0px;
+        height: 40px;
+        font-size: 16px;
+        padding: 25px;
+        width: 100%;
+        font-weight: bold;
+    }
 }

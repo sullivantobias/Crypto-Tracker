@@ -1,0 +1,80 @@
+@import '../../commons/styles/colors.scss';
+@import '../../commons/styles/breakpoints.scss';
+
+.cmp-converter {
+    margin: 0px;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgb(34, 37, 49);
+
+    @include medium {
+        width: 50%;
+    }
+
+    &__currency {
+        box-sizing: border-box;
+        margin: 0px;
+        display: flex;
+        flex: 1 1 0%;
+        flex-direction: row;
+        padding: 20px 24px;
+        background-color: rgb(34, 37, 49);
+        -webkit-box-align: center;
+        align-items: center;
+
+        &:first-child {
+            background-color: rgb(23, 25, 36);
+        }
+
+        &__wrapper {
+            &--symbol {
+                line-height: 1.5;
+                margin: 0px;
+                color: rgb(207, 214, 228);
+                font-size: 11px;
+                text-transform: uppercase;
+            }
+
+            &--label {
+                line-height: 1.5;
+                margin: 0px;
+                color: rgb(255, 255, 255);
+                font-size: 14px;
+                font-weight: 500;
+            }
+        }
+
+        &__input {
+            box-sizing: border-box;
+            margin: 0px;
+            display: flex;
+            flex: 1 1 0%;
+            flex-direction: row;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: end;
+            justify-content: flex-end;
+            color: rgb(255, 255, 255);
+
+            input {
+                padding: 10px 0px;
+                background: transparent;
+                caret-color: rgb(97, 136, 255);
+                border: none;
+                font-size: 18px;
+                text-align: right;
+                appearance: none;
+                color: rgb(50, 53, 70);
+                font-weight: 700;
+                font-family: Inter, sans-serif;
+                width: 100%;
+                outline: 0;
+                color: $color-white;
+            }
+        }
+    }
+}

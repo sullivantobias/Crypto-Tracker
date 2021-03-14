@@ -12,8 +12,8 @@ import {
     MARKET_CHART
 } from "../constants/api";
 
-export const fetchMarkets = async currency => {
-    const response = await fetch(MARKETS(currency));
+export const fetchMarkets = async (currency, page) => {
+    const response = await fetch(MARKETS(currency, page));
     const markets = await response.json();
 
     return markets;

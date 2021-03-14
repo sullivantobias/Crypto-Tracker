@@ -1,11 +1,15 @@
 import React from 'react';
+import News from '../../components/news/news';
 
-const News = () => {
+import './news.scss';
+
+const NewsPage = () => {
     return (
-        <div>
-            <h2>News Page</h2>
+        <div className='cmp-page-news'>
+            <h2 className='cmp-page-news--title'>Latest News</h2>
+            <News query={'cryptocurrencies'} numberItemsDisplayed={10} hideTitle />
         </div>
     );
 }
 
-export default News;
+export default NewsPage;

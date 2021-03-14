@@ -9,7 +9,7 @@ const Description = ({ crypto, text }) => {
 
     useEffect(() => {
         getHeightOfDesc()
-    }, [])
+    })
 
     const getHeightOfDesc = () => {
         const tempEl = document.createElement('div')

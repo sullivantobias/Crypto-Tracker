@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoIosClose } from "react-icons/io";
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux'
 import CurrencySelector from '../currencySelector/currencySelector';
 
 import './navigation.scss';
 
 const Navigation = ({ isBurger = true, links }) => {
+    const currencyData = useSelector(state => state.currency)
+
     const [open, setOpen] = useState(false);
 
     const onClickHandler = () => setOpen(prev => !prev);
+
+    useEffect(() => setOpen(false), [currencyData])
 
     return (
         <nav className='cmp-navigation'>

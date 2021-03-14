@@ -5,7 +5,7 @@ import allActions from './store/actions'
 import { fetchAvailableCurrencies, fetchGlobalInfos } from './api/api'
 import Home from './pages/Home/home';
 import Currency from './pages/Currency/currency';
-import News from './pages/News/news';
+import NewsPage from './pages/News/news';
 import Header from './components/header/header';
 import Navigation from './components/navigation/navigation';
 
@@ -55,7 +55,7 @@ const App = () => {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/currencies' component={Currency} />
-            <Route path='/news' component={News} />
+            <Route path='/news' component={NewsPage} />
           </Switch>
         </>
       </Router>

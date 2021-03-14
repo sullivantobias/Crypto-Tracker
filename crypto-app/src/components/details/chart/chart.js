@@ -8,7 +8,7 @@ const Chart = ({ data, time }) => {
     const generateDataPoints = () => {
         let datas = { key: [], value: [] };
 
-        data && data.prices && data.prices.map(d => {
+        data && data.prices && data.prices.forEach(d => {
             datas.key = [...datas.key, formatDate(new Date(d[0]))]
             datas.value = [...datas.value, d[1].toFixed(d[1] < 10000 ? 4 : 0)]
         })
