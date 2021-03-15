@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { propTypes } from './propTypes';
 
 import './filter.scss'
 
@@ -24,5 +25,7 @@ const Filter = ({ filters, onChangeValues }) => {
         </div>
     );
 }
+
+Filter.propTypes = propTypes;
 
 export default Filter;

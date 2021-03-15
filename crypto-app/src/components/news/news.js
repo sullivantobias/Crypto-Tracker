@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { propTypes } from './propTypes'
 import { fetchNews } from '../../api/news';
 import { Loader } from '../commons/loader/loader';
 
@@ -52,5 +53,7 @@ const News = ({ query, numberItemsDisplayed, hideTitle = false }) => {
         </div>
     );
 }
+
+News.propTypes = propTypes;
 
 export default News;

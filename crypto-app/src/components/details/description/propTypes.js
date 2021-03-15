@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 
 export const propTypes = {
-    currencies: PropTypes.arrayOf(PropTypes.string)
+    crypto: PropTypes.string,
+    text: PropTypes.string
 };

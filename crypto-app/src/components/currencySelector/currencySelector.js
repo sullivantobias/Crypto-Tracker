@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
-import { propTypes } from './propTypes';
 import { useDispatch, useSelector } from 'react-redux';
 import allActions from '../../store/actions'
 import { Loader } from '../commons/loader/loader';
@@ -65,7 +64,5 @@ const CurrencySelector = () => {
         </div>
     );
 }
-
-CurrencySelector.propTypes = propTypes;
 
 export default CurrencySelector;

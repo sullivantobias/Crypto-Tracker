@@ -1,4 +1,5 @@
 import React from 'react';
+import { propTypes } from './propTypes';
 
 import { Line } from 'react-chartjs-2';
 
@@ -107,5 +108,7 @@ const Chart = ({ data, time }) => {
         </div>
     );
 }
+
+Chart.propTypes = propTypes;
 
 export default Chart;

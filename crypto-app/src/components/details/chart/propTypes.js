@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
 
 export const propTypes = {
-    datas: PropTypes.object
+    data: PropTypes.objectOf(PropTypes.array)
 };

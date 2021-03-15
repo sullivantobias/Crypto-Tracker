@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { propTypes } from './propTypes';
 import { FaChevronDown } from 'react-icons/fa';
 
 import './description.scss';
@@ -33,5 +34,7 @@ const Description = ({ crypto, text }) => {
         </div>
     );
 }
+
+Description.propTypes = propTypes;
 
 export default Description;

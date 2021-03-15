@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { propTypes } from './propTypes'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoIosClose } from "react-icons/io";
 import { Link } from 'react-router-dom';
@@ -51,5 +52,6 @@ const Navigation = ({ isBurger = true, links }) => {
     );
 }
 
+Navigation.propTypes = propTypes;
 
 export default Navigation;

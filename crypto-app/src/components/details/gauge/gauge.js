@@ -1,4 +1,5 @@
 import React from 'react';
+import { propTypes } from './propTypes';
 
 import './gauge.scss'
 
@@ -16,5 +17,6 @@ const Gauge = ({ filled, total }) => {
     );
 };
 
+Gauge.propTypes = propTypes;
 
 export default Gauge;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { propTypes } from './propTypes';
 import { IoIosLink, IoIosPricetag } from 'react-icons/io';
 import { formatNumbers } from '../utils';
 import Gauge from './gauge/gauge';
@@ -41,5 +42,7 @@ const Basic = ({ details, currency }) => {
         </div >
     );
 }
+
+Basic.propTypes = propTypes;
 
 export default Basic;

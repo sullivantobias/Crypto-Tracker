@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { propTypes } from './propTypes'
+import { Link } from 'react-router-dom';
 import { Loader } from '../commons/loader/loader'
 import { formatNumbers } from '../utils';
 

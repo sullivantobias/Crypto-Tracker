@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { propTypes } from './propTypes';
 
 import './converter.scss';
 
@@ -25,7 +26,6 @@ const Converter = ({ crypto, lastValue, currency }) => {
     return (
         <div className='cmp-converter'>
             <div className='cmp-converter__currency'>
-                <img className='cmp-converter__currency--logo' />
                 <div className='cmp-converter__currency__wrapper' >
                     <p className='cmp-converter__currency__wrapper--symbol'>{crypto.symbol}</p>
                     <p className='cmp-converter__currency__wrapper--label'>{crypto.name}</p>
@@ -35,7 +35,6 @@ const Converter = ({ crypto, lastValue, currency }) => {
                 </div>
             </div>
             <div className='cmp-converter__currency'>
-                <img className='cmp-converter__currency--logo' />
                 <div className='cmp-converter__currency__wrapper' >
                     <p className='cmp-converter__currency__wrapper--symbol'>{currency}</p>
                 </div>
@@ -47,5 +46,6 @@ const Converter = ({ crypto, lastValue, currency }) => {
     );
 }
 
+Converter.propTypes = propTypes;
 
 export default Converter;

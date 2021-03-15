@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 
 export const propTypes = {
-    datas: PropTypes.object
+    filters: PropTypes.array,
+    onChangeValues: PropTypes.func
 };
