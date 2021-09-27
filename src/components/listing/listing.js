@@ -15,7 +15,7 @@ const Listing = ({ keys, datas, currency, loadingList }) => {
 
     return (
         <div className='cmp-listing'>
-            { loadingList ? <table className='cmp-listing__list'>
+            {loadingList ? <table className='cmp-listing__list'>
                 <thead className='cmp-listing__keys'>
                     <tr>
                         {keys.map(key => <th className='cmp-listing__keys--key' key={key}><div>{key}</div></th>)}
@@ -26,8 +26,7 @@ const Listing = ({ keys, datas, currency, loadingList }) => {
                         <tr key={item.id} className='cmp-listing__values__item' >
                             <td className='cmp-listing__values__item__marker'>
                                 <Link to={{
-                                    pathname: `/currencies/${item.symbol}`,
-                                    state: { cryptoCurrency: item.id }
+                                    pathname: `/CryptoTracker/currency/${item.id}`
                                 }} className='cmp-listing__values__link'>
                                     <img alt={item.name} className='cmp-listing__values__item__marker--logo' src={item.image} />
                                     <div className='cmp-listing__values__item__marker__rightWrapper'>
@@ -39,8 +38,8 @@ const Listing = ({ keys, datas, currency, loadingList }) => {
                             </td>
                             <td className='cmp-listing__values__item--price'>
                                 <Link to={{
-                                    pathname: `/currencies/${item.symbol}`,
-                                    state: { currency: item.id }
+                                    pathname: `/CryptoTracker/currencies/${item.symbol}`,
+                                    state: { cryptoCurrency: item.id }
                                 }} className='cmp-listing__values__link'>
                                     {formatNumbers(currency, item.current_price)}
                                 </Link>

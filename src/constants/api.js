@@ -22,4 +22,4 @@ export const AVAILABLECURRENCIES = `${ENDPOINT}simple/supported_vs_currencies`
 
 export const API_KEY = 'f6956d3cd1b040759e3bda7347ca1157'
 
-export const SPECIFIC_CRYPTO_NEWS = (query, numberItemsDisplayed = 3, page = 1) => `http://newsapi.org/v2/everything?q=${query}&apiKey=${API_KEY}&pageSize=${numberItemsDisplayed}&page=${page}`
+export const SPECIFIC_CRYPTO_NEWS = (query, numberItemsDisplayed = 3, page = 1) => `//newsapi.org/v2/everything?q=${query}&apiKey=${API_KEY}&pageSize=${numberItemsDisplayed}&page=${page}`

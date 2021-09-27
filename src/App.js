@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
-import allActions from './store/actions'
 import { fetchAvailableCurrencies, fetchGlobalInfos } from './api/api'
+import allActions from './store/actions'
 import Home from './pages/Home/home';
 import Currency from './pages/Currency/currency';
 import NewsPage from './pages/News/news';
@@ -48,16 +48,24 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-        <Navigation links={[{ path: '/', title: 'Cryptocurrencies' }, { path: '/news', title: 'News' }]} />
+        <Navigation links={[
+          { path: '/CryptoTracker', title: 'Cryptocurrencies' },
+          { path: '/CryptoTracker/news', title: 'News' }
+        ]} />
         <Header datas={headerInfos} />
-        <>
-          <Navigation isBurger={false} links={[{ path: '/', title: 'Cryptocurrencies' }, { path: '/news', title: 'News' }]} />
+        <React.Fragment>
+          <Navigation
+            isBurger={false}
+            links={[
+              { path: '/CryptoTracker', title: 'Cryptocurrencies' },
+              { path: '/CryptoTracker/news', title: 'News' }
+            ]} />
           <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/currencies' component={Currency} />
-            <Route path='/news' component={NewsPage} />
+            <Route exact path='/CryptoTracker' component={Home} />
+            <Route path='/CryptoTracker/currency/:cryptoID' component={Currency} />
+            <Route path='/CryptoTracker/news' component={NewsPage} />
           </Switch>
-        </>
+        </React.Fragment>
       </Router>
     </div >
   );

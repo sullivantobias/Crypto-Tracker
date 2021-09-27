@@ -25,7 +25,8 @@ const Home = () => {
         const listingMarkets = await fetchMarkets(currencyData.currency, page);
 
         firstLoad && setLoadingList(true)
-        setListingInfos([...listingInfos, listingMarkets].flat());
+        loadMore ? setListingInfos([...listingInfos, listingMarkets].flat())
+            : setListingInfos(listingMarkets)
 
         setFirstLoad(false)
         setLoadMore(false)
@@ -43,9 +44,9 @@ const Home = () => {
                 keys={['Name', 'Price', '24h', 'Market Cap', 'Volume', 'Circulating Supply', 'Last 7 Days']}
                 datas={listingInfos}
                 currency={currencyData.currency} />
-            { !loadMore && loadingList && <button onClick={() => handleClick()}
+            {!loadMore && loadingList && <button onClick={() => handleClick()}
                 className='cmp-page-home--loadmore'>Load more</button>}
-            { loadMore && !firstLoad && <Loader isDots />}
+            {loadMore && !firstLoad && <Loader isDots />}
         </div>
     );
 }
