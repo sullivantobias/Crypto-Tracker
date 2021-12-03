@@ -1,2 +1,7 @@
 # Crypto Tracker  
-# Version 1.0.0
+
+**Stack** 
+ - React
+ - Redux
+ - ChartJs
+ - Sass
