@@ -2,8 +2,12 @@ import React from 'react';
 import { propTypes } from './propTypes';
 
 import { Line } from 'react-chartjs-2';
+import { Chart as ChartJS, registerables } from 'chart.js';
 
 import './chart.scss';
+
+ChartJS.register(...registerables);
+
 
 const Chart = ({ data, time }) => {
     const generateDataPoints = () => {
@@ -55,21 +59,19 @@ const Chart = ({ data, time }) => {
     }
 
     const chartOptions = {
-        legend: {
-            display: false
+        plugins: {
+            legend: {
+                display: false,
+            },
         },
-
         scales: {
-            yAxes: [
-                {
+            yAxes: {
                     ticks: {
                         fontColor: "white",
                         fontStyle: "bold"
                     }
-                }
-            ],
-            xAxes: [
-                {
+                },
+            xAxes: {
                     ticks: {
                         maxTicksLimit: (() => {
                             if (time === '1' || time === '7' || '365') return 7;
@@ -81,7 +83,6 @@ const Chart = ({ data, time }) => {
                         minRotation: 0
                     }
                 }
-            ]
         },
     }
 
@@ -104,7 +105,7 @@ const Chart = ({ data, time }) => {
 
     return (
         <div className='cmp-details-chart'>
-            <Line data={chartData} options={chartOptions} />
+            <Line type='linear' data={chartData} options={chartOptions} />
         </div>
     );
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { fetchAvailableCurrencies, fetchGlobalInfos } from './api/api'
 import allActions from './store/actions'
@@ -47,7 +47,6 @@ const App = () => {
 
   return (
     <div className="App">
-      <Router>
         <Navigation links={[
           { path: '/CryptoTracker', title: 'Cryptocurrencies' },
           { path: '/CryptoTracker/news', title: 'News' }
@@ -60,13 +59,12 @@ const App = () => {
               { path: '/CryptoTracker', title: 'Cryptocurrencies' },
               { path: '/CryptoTracker/news', title: 'News' }
             ]} />
-          <Switch>
-            <Route exact path='/CryptoTracker' component={Home} />
-            <Route path='/CryptoTracker/currency/:cryptoID' component={Currency} />
-            <Route path='/CryptoTracker/news' component={NewsPage} />
-          </Switch>
+          <Routes>
+            <Route exact path='/CryptoTracker' element={<Home/>} />
+            <Route path='/CryptoTracker/currency/:cryptoID' element={<Currency/>} />
+            <Route path='/CryptoTracker/news' element={<NewsPage/>} />
+          </Routes>
         </React.Fragment>
-      </Router>
     </div >
   );
 }
