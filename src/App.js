@@ -48,21 +48,21 @@ const App = () => {
   return (
     <div className="App">
         <Navigation links={[
-          { path: '/CryptoTracker', title: 'Cryptocurrencies' },
-          { path: '/CryptoTracker/news', title: 'News' }
+          { path: '/Crypto-Tracker', title: 'Cryptocurrencies' },
+          { path: '/Crypto-Tracker/news', title: 'News' }
         ]} />
         <Header datas={headerInfos} />
         <React.Fragment>
           <Navigation
             isBurger={false}
             links={[
-              { path: '/CryptoTracker', title: 'Cryptocurrencies' },
-              { path: '/CryptoTracker/news', title: 'News' }
+              { path: '/Crypto-Tracker', title: 'Cryptocurrencies' },
+              { path: '/Crypto-Tracker/news', title: 'News' }
             ]} />
           <Routes>
-            <Route exact path='/CryptoTracker' element={<Home/>} />
-            <Route path='/CryptoTracker/currency/:cryptoID' element={<Currency/>} />
-            <Route path='/CryptoTracker/news' element={<NewsPage/>} />
+            <Route exact path='/Crypto-Tracker' element={<Home/>} />
+            <Route path='/Crypto-Tracker/currency/:cryptoID' element={<Currency/>} />
+            <Route path='/Crypto-Tracker/news' element={<NewsPage/>} />
           </Routes>
         </React.Fragment>
     </div >
