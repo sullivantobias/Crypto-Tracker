@@ -15,7 +15,7 @@
     "reactide-config": "^1.0.2",
     "redux": "^4.0.5",
     "sass": "^1.42.1",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
